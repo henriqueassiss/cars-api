@@ -32,3 +32,12 @@ func InsertCar(w http.ResponseWriter, r *http.Request) {
 	database.DB.Create(&p)
 	json.NewEncoder(w).Encode(p)
 }
+
+func DeleteCar(w http.ResponseWriter, r *http.Request) {
+	v := mux.Vars(r)
+	id := v["id"]
+	var p models.Car
+
+	database.DB.Delete(&p, id)
+	json.NewEncoder(w).Encode(p)
+}

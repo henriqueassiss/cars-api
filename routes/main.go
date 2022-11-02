@@ -13,5 +13,6 @@ func Main() {
 	r.HandleFunc("/api/cars", controllers.GetCars).Methods("Get")
 	r.HandleFunc("/api/cars", controllers.InsertCar).Methods("Post")
 	r.HandleFunc("/api/cars/{id}", controllers.GetCarById).Methods("Get")
+	r.HandleFunc("/api/cars/{id}", controllers.DeleteCar).Methods("Delete")
 	log.Fatal(http.ListenAndServe(":8000", r))
 }
