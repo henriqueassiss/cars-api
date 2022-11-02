@@ -3,8 +3,15 @@ package routes
 import (
 	"log"
 	"net/http"
+
+	"github.com/gorilla/mux"
+	"github.com/henriqueassiss/cars-api/controllers"
 )
 
 func Main() {
-	log.Fatal(http.ListenAndServe(":8000", nil))
+	r := mux.NewRouter()
+	r.HandleFunc("/api/cars", controllers.GetCars).Methods("Get")
+	r.HandleFunc("/api/cars", controllers.InsertCar).Methods("Post")
+	r.HandleFunc("/api/cars/{id}", controllers.GetCarById).Methods("Get")
+	log.Fatal(http.ListenAndServe(":8000", r))
 }
